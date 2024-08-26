@@ -20,4 +20,8 @@ public class Memo {
     }
 
 
+    public void update(MemoRequestDto requestDto) {
+        this.setUsername(requestDto.getUsername());
+        this.setContents(requestDto.getContents());
+    }
 }
