@@ -22,6 +22,8 @@ public class MemoService {
     }
 
 
+
+
     public MemoResponseDto creatMemo(MemoRequestDto requestDto) {
 
 
@@ -36,7 +38,6 @@ public class MemoService {
 
         return memoResponseDto;
     }
-
     public List<MemoResponseDto> getMemos() {
 
 
@@ -44,6 +45,11 @@ public class MemoService {
 
 
     }
+
+    public List<MemoResponseDto> getMemosByKeword(String keyword) {
+        return memoRepository.findAllByContentsContainsOrderByModifiedAtDesc(keyword).stream().map(MemoResponseDto::new).toList();
+    }
+
     @Transactional
     public Long updateMemo(Long id, MemoRequestDto requestDto) {
 
