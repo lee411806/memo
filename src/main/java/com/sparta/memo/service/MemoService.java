@@ -40,7 +40,7 @@ public class MemoService {
     }
     public List<MemoResponseDto> getMemos() {
 
-
+        // repository 메서드 반환은 entity를 responseDTO로 변환하고 마지막으로 LIST로 만들어준다는거 아니야
         return memoRepository.findAllByOrderByModifiedAtDesc().stream().map(MemoResponseDto::new).toList();
 
 
@@ -79,6 +79,11 @@ public class MemoService {
         return id;
     }
 
+
+    // 이해했어 findid는 반환값이 optional이고
+    // optional은 null값을 안받는 용도로 사용되니까
+    // 만약 null값이 들어가서 에러가 나면
+    // 인자 잘못넣어줬다고 말하는거구나
 
     private Memo findMemo(Long id) {
         return memoRepository.findById(id).orElseThrow(() ->
